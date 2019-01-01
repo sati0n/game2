@@ -21,15 +21,16 @@ window.onload = function() {
     }
 
     var game_ = new Game(900, 1600); 
-    game_.fps = 20; 
+    game_.fps = 24; 
     game_.preload('./img/素材/ui/title.png'); 
 	game_.preload('./img/素材/ui/tap.png'); 
     game_.preload('./img/素材/ui/tap2.png'); 
     game_.preload('./img/素材/ui/waku.png'); 
     game_.preload('./img/素材/ui/retry.png'); 
-	game_.preload('./img/素材/1/背景1.png'); 
+	game_.preload('./img/素材/2/背景2.png'); 
 	game_.preload('./img/素材/1/前景1.png'); 
-	game_.preload('./img/素材/1/オブジェクト1.png'); 
+	game_.preload('./img/素材/2/オブジェクト1.png'); 
+	game_.preload('./img/素材/2/オブジェクト2.png'); 
 	game_.preload('./img/horiko.png'); 
 	game_.preload('./img/ホコリ動きpng/ホリコ　動き　2.0.png'); 
     game_.preload('./img/ari.png');
@@ -44,6 +45,7 @@ window.onload = function() {
     audioElem.src = "./sound/sample.wav";
     audioElem.loop = true;
 
+
     game_.onload = function() { 
 
         //タイトルシーン   
@@ -51,7 +53,7 @@ window.onload = function() {
             score=0;
             var scene = new Scene();                    
             var bg1 = new Sprite(900, 1600);            
-			bg1.image = game_.assets['./img/素材/1/背景1.png']; 
+			bg1.image = game_.assets['./img/素材/2/背景2.png']; 
 			bg1.x = 0;                                 
 			bg1.y = 0;                                 
 			scene.addChild(bg1); 
@@ -62,12 +64,6 @@ window.onload = function() {
 			pillar.y = -400;                                 
 			pillar.scale(1.5,1.5);
             scene.addChild(pillar); 
-
-            var bg2 = new Sprite(900, 1600);           
-			bg2.image = game_.assets['./img/素材/1/前景1.png']; 
-			bg2.x = 0;                                 
-			bg2.y = 0;                                 
-			scene.addChild(bg2);  
 
 
             var title = new Sprite(225, 195);          
@@ -83,11 +79,14 @@ window.onload = function() {
             tap.scale(1.6,1.6);
 			scene.addChild(tap); 
 
-            var horiko = new Sprite(1000, 1000);         
-			horiko.image = game_.assets['./img/ホコリ動きpng/ホリコ　動き　2.0.png'];
-			horiko.x = -50;                                 
-			horiko.y = 650;                                 
-            horiko.scale(0.5,0.5);
+            var horiko = new Sprite(250, 250);         
+			horiko.image = game_.assets['./img/horiko.png'];
+            
+			horiko.x = 300;                                 
+			horiko.y = 900;                                 
+            horiko.scale(2,2);
+            horiko.frame=5;
+
 			scene.addChild(horiko);  
 
 
@@ -108,7 +107,7 @@ window.onload = function() {
             var SCROLL_DIST = 700;
 
             var bg1 = new Sprite(900, 1600);            
-			bg1.image = game_.assets['./img/素材/1/背景1.png']; 
+			bg1.image = game_.assets['./img/素材/2/背景2.png']; 
 			bg1.x = 0;                                
 			bg1.y = 0;                                
 			scene.addChild(bg1); 
@@ -141,13 +140,13 @@ window.onload = function() {
             for(var i=0;i<2;i++){
 
                 var p_a = new Sprite(900, 1600);
-                p_a.image = game_.assets['./img/素材/1/オブジェクト1.png'];
+                p_a.image = game_.assets['./img/素材/2/オブジェクト1.png'];
                 p_a.x = 0;                                
-                p_a.y = -700;                             
-                p_a.scale(0.9,-0.9);
+                p_a.y = -950;                             
+                p_a.scale(0.9,0.9);
 
                 var p_b = new Sprite(900, 1600);          
-                p_b.image = game_.assets['./img/素材/1/オブジェクト1.png'];
+                p_b.image = game_.assets['./img/素材/2/オブジェクト2.png'];
                 p_b.x = 0;                                 
                 p_b.y = 700;                               
                 p_b.scale(0.9,0.9);
@@ -155,12 +154,12 @@ window.onload = function() {
                 var col_a = new Sprite(280,1000);
                 col_a.x = 170; 
                 col_a.y = -460; 
-                //col_a.backgroundColor='#999999';
+                col_a.backgroundColor='#999999';
 
                 var col_b = new Sprite(280,1000);
                 col_b.x = 170; 
                 col_b.y = 1060; 
-                //col_b.backgroundColor='#999999';
+                col_b.backgroundColor='#999999';
 
                 var pillar = new Group();
                 pillar.addChild(col_a);
@@ -173,18 +172,6 @@ window.onload = function() {
                 scene.addChild(pillars[i]);
 
             } 
-            var fg1 = new Sprite(900, 1600);          
-			fg1.image = game_.assets['./img/素材/1/前景1.png'];
-			fg1.x = 0;                                 
-			fg1.y = 0;                               
-			scene.addChild(fg1);  
-
-            var fg2 = new Sprite(900, 1600);         
-			fg2.image = game_.assets['./img/素材/1/前景1.png'];
-			fg2.x = 900;                                 
-			fg2.y = 0;                                 
-			scene.addChild(fg2);  
- 
            
             var ay = 1.5;
             var vy = 0;
@@ -211,14 +198,6 @@ window.onload = function() {
                 if(back_pillar.x<-500){
                     back_pillar.x = 1000;
                 }
-                fg1.x-=SCROLL_SPEED;
-                fg2.x-=SCROLL_SPEED;
-                if (fg1.x <= -900) {                  
-			        fg1.x = 900;                      
-			    }
-			    if (fg2.x <= -900) {                  
-			        fg2.x = 900;                      
-			    }
                 if(horiko.lastChild.frame<6){
                     wait--;
                     if(wait<=0){
@@ -250,7 +229,7 @@ window.onload = function() {
             });
             function gameover(){
                 flag = false;
-
+                audioElem.pause();
                 var waku = new Sprite(150, 130);      
 			    waku.image = game_.assets['./img/素材/ui/waku.png']; 
 			    waku.x = 375;                                 
@@ -280,6 +259,8 @@ window.onload = function() {
 
                 retry.addEventListener(Event.TOUCH_START, function(e) {
                 removeScene(scene);
+                audioElem.currentTime =0 ;
+                audioElem.play();
                 game_.replaceScene(TitleScene());   
             });
             }
@@ -297,7 +278,7 @@ window.onload = function() {
         var SoundCheckScene = function(){
             var scene = new Scene();
             var bg1 = new Sprite(900, 1600);            　
-			bg1.image = game_.assets['./img/素材/1/背景1.png']; 　
+			bg1.image = game_.assets['./img/素材/2/背景2.png']; 　
 			bg1.x = 0;                                 　
 			bg1.y = 0;                                 　
 			scene.addChild(bg1);  
@@ -346,6 +327,7 @@ window.onload = function() {
                 game_.replaceScene(TitleScene());    
             });
             nasi.addEventListener(Event.TOUCH_START, function(e) {
+                audioElem.muted =true;
                 removeScene(scene);
                 game_.replaceScene(TitleScene());    
             });
