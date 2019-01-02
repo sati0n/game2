@@ -59,7 +59,7 @@ window.onload = function() {
 			scene.addChild(bg1); 
             
             var pillar = new Sprite(900, 1600);        
-			pillar.image = game_.assets['./img/素材/1/オブジェクト1.png']; 
+			pillar.image = game_.assets['./img/素材/2/オブジェクト2.png']; 
 			pillar.x = -130;                                 
 			pillar.y = -400;                                 
 			pillar.scale(1.5,1.5);
@@ -113,10 +113,10 @@ window.onload = function() {
 			scene.addChild(bg1); 
             
             var back_pillar = new Sprite(900, 1600);  
-			back_pillar.image = game_.assets['./img/素材/1/オブジェクト1.png'];
+			back_pillar.image = game_.assets['./img/素材/2/オブジェクト2.png'];
 			back_pillar.x = 1000;                                 
 			back_pillar.y = 650;                                  
-			back_pillar.scale(0.2,0.2);
+			back_pillar.scale(0.35,0.35);
             scene.addChild(back_pillar); 
 
 
@@ -141,7 +141,7 @@ window.onload = function() {
 
                 var p_a = new Sprite(900, 1600);
                 p_a.image = game_.assets['./img/素材/2/オブジェクト1.png'];
-                p_a.x = 0;                                
+                p_a.x = -130;                                
                 p_a.y = -950;                             
                 p_a.scale(0.9,0.9);
 
@@ -151,15 +151,15 @@ window.onload = function() {
                 p_b.y = 700;                               
                 p_b.scale(0.9,0.9);
 
-                var col_a = new Sprite(280,1000);
-                col_a.x = 170; 
+                var col_a = new Sprite(50,1000);
+                col_a.x = 290; 
                 col_a.y = -460; 
-                col_a.backgroundColor='#999999';
+                //col_a.backgroundColor='#999999';
 
                 var col_b = new Sprite(280,1000);
                 col_b.x = 170; 
                 col_b.y = 1060; 
-                col_b.backgroundColor='#999999';
+                //col_b.backgroundColor='#999999';
 
                 var pillar = new Group();
                 pillar.addChild(col_a);
